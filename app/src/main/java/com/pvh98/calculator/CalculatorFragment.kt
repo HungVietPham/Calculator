@@ -173,5 +173,4 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
         textResult.text = textResult.text.toString() + s
     }
 
-
 }
