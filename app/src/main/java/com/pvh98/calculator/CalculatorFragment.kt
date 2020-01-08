@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_calculator.*
 
 class CalculatorFragment : Fragment(), View.OnClickListener {
-    var operationDecimal = false
-    var firstValue = 0.0f
-    var secondValue = 0.0f
-    var operationAdd = false
-    var operationSub = false
-    var operationMul = false
-    var operationDiv = false
-    var operationEuclidDiv = false
+    private var operationDecimal = false
+    private var firstValue = 0.0f
+    private var secondValue = 0.0f
+    private var operationAdd = false
+    private var operationSub = false
+    private var operationMul = false
+    private var operationDiv = false
+    private var operationEuclidDiv = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +28,10 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        enterButton()
+        setListener()
     }
 
-    private fun enterButton() {
+    private fun setListener() {
         buttonZero.setOnClickListener(this)
         buttonOne.setOnClickListener(this)
         buttonTwo.setOnClickListener(this)
@@ -56,7 +56,16 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.buttonOne, R.id.buttonTwo, R.id.buttonThree, R.id.buttonFour, R.id.buttonFive, R.id.buttonSix, R.id.buttonSeven, R.id.buttonEight, R.id.buttonNine, R.id.buttonZero -> {
+            R.id.buttonOne,
+            R.id.buttonTwo,
+            R.id.buttonThree,
+            R.id.buttonFour,
+            R.id.buttonFive,
+            R.id.buttonSix,
+            R.id.buttonSeven,
+            R.id.buttonEight,
+            R.id.buttonNine,
+            R.id.buttonZero -> {
                 enterDigit((v as Button).text.toString())
             }
 
@@ -143,7 +152,7 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     }
 
     private fun enterDecimal() {
-        if (operationDecimal) {
+        if (!operationDecimal) {
         } else {
             textResult.text = textResult.text.toString() + "."
             operationDecimal = true
@@ -152,8 +161,8 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     }
 
     private fun enterDelete() {
-        var num = textResult.text.toString().length
-        var del = textResult.text.toString().substring(0, num - 1)
+        val num = textResult.text.toString().length
+        val del = textResult.text.toString().substring(0, num - 1)
         textResult.text = del
     }
 
