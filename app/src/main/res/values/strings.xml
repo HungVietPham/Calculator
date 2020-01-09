@@ -19,4 +19,5 @@
     <string name="calc_dot">.</string>
     <string name="calc_equal">=</string>
     <string name="calc_c">c</string>
+    <string name="hint_0">0</string>
 </resources>
